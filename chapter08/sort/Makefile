@@ -1,0 +1,29 @@
+# CH08: sort/Makefile
+# build and test mysort function
+GCC = gcc
+CFLAGS = -g -Wall -Wshadow
+VALGRIND = valgrind --tool=memcheck --leak-check=full
+VALGRIND += --verbose --log-file=valog
+OBJS = mysort.o main.o
+HDRS = mysort.h
+test: inputgen mysort
+	./mysort 15  < expected15
+#	./mysort 15  < input15  > output15
+#	diff output15 expected15
+
+inputgen:
+	shuf -i 1-1000 -n 15 > input15
+	sort -n -r input15  > expected15
+
+mysort: $(OBJS) $(HDRS)
+	$(GCC) $(CFLAGS) $(OBJS) -o $@
+
+.c.o:
+	$(GCC) $(CFLAGS) -c $*.c
+
+memory: inputgen mysort
+	$(VALGRIND) ./mysort 15  < input15  > output15
+	grep "ERROR" valog
+
+clean:
+	/bin/rm -f mysort *.o *~ *15 valog

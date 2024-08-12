@@ -1,0 +1,14 @@
+# CH08:sort/Makefile1
+# build and run sort using qsort int
+GCC = gcc
+CFLAGS = -g -Wall -Wshadow
+OBJS = compareint.o main.o
+HDRS = compareint.h
+qsortint: $(OBJS)
+	$(GCC) $(CFLAGS) $(OBJS) -o qsortint
+
+.c.o:
+	$(GCC) $(CFLAGS) -c $*.c
+
+clean: 
+	/bin/rm -f $(OBJS) qsortint *~

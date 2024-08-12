@@ -1,0 +1,15 @@
+# CH08:qsort/Makefile2
+GCC = gcc
+CFLAGS = -g -Wall -Wshadow
+SRCS = comparestring.c mainqsortstring.c
+OBJS = comparestring.o mainqsortstring.o
+HDRS = comparestring.h
+qsortstring: $(OBJS)
+	$(GCC) $(CFLAGS) $(OBJS) -o qsortstring
+
+.c.o:
+	$(GCC) $(CFLAGS) -c $(SRCS)
+
+clean:
+	/bin/rm -f $(OBJS) qsortstring *~
+
