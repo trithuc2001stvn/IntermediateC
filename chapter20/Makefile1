@@ -1,0 +1,14 @@
+# CH20:Makefile1
+GCC = gcc  # khai bao trinh bien dich
+CFLAGS = -g -Wall -Wshadow # khai bao option
+SRCS = list.c listreverse.c	# khai bao ma nguon
+OBJS = $(SRCS:%.c=%.o) 		# chuyen file source .c sang file object .o
+
+mainreverse: $(OBJS)
+	$(GCC) $(CFLAGS) $(OBJS) -o mainreverse
+
+.c.o:
+	$(GCC) $(CFLAGS) -c $*.c
+
+clean:
+	/bin/rm -f $(OBJS) *~ mainreverse
