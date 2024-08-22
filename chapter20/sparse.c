@@ -51,12 +51,12 @@ void List_destroy(Node * arr)
 		return;
 	while (arr != NULL)
 	{
-		// Node * p = arr;
-		//arr = arr -> next;
-		//free(p);
-		Node * p = arr -> next;
-		free(arr);
-		arr = p;
+		Node * p = arr;
+		arr = arr -> next;
+		free(p);
+	//	Node * p = arr -> next;
+	//	free(arr);
+	//	arr = p;
 	}
 }
 static Node * Node_create(int ind, int val)
