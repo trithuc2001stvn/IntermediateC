@@ -1,2 +1,2 @@
 # IntermediateC
-IntermediateC
+IntermediateC.
